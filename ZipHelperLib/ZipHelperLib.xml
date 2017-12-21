@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZipHelperLib</name>
+    </assembly>
+    <members>
+        <member name="T:ZipHelperLib.ZipHelper">
+            <summary>
+            This is a C# .Net Standard library which enables zipping and unzipping strings in memory.
+            Zip and Unzip in memory using System.IO.Compression.
+            </summary>
+            <remarks>
+            Please check if System.IO.Compression and Linq are included.
+            </remarks>
+        </member>
+        <member name="M:ZipHelperLib.ZipHelper.Zip(System.String)">
+            <summary>
+            Zips a string into a zipped byte array.
+            </summary>
+            <param name="textToZip">The text to be zipped.</param>
+            <returns>byte[] representing a zipped stream</returns>
+        </member>
+        <member name="M:ZipHelperLib.ZipHelper.Unzip(System.Byte[])">
+            <summary>
+            Unzip a zipped byte array into a string.
+            </summary>
+            <param name="zippedBuffer">The byte array to be unzipped</param>
+            <returns>string representing the original stream</returns>
+        </member>
+    </members>
+</doc>
