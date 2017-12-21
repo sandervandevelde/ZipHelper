@@ -19,8 +19,8 @@ Or use your Package Manager in Visual Studio: **Install-Package ZipHelperLib -Ve
 This solution is deviced in three parts:
 
 1. ZipHelperLib, the zip/unzip logic
-2. ZipHelperApp, a test application for the zip/unzip logic; it uses a file with lorem Ipsem (included)
-3. ZipHelperUnit, a unittest for the zip/unzip logic
+2. ZipHelperApp, a test application for the zip/unzip logic; it uses a file (included in project) containing Lorem Ipsum text just to fill a stringto start with. After execution, check the compression rate. 
+3. ZipHelperUnit, a unittest for the zip/unzip logic; it uses a text string, no files.
 
 ## Contribute
 
