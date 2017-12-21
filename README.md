@@ -6,6 +6,14 @@ No additional NuGet packages are needed, this logic is based on System.IO.Compre
 
 Please check if System.IO.Compression and Linq are included.
 
+## NuGet
+
+The Zip/Unzip logic is also available on http://nuget.org. 
+
+You can find it on https://www.nuget.org/packages/ZipHelperLib/
+
+Or use your Package Manager in Visual Studio: **Install-Package ZipHelperLib -Version 1.0.0**
+
 ## Solution
 
 This solution is deviced in three parts:
