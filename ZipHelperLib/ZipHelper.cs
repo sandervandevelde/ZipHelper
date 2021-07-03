@@ -18,6 +18,7 @@ namespace ZipHelperLib
         /// Zips a string into a zipped byte array.
         /// </summary>
         /// <param name="textToZip">The text to be zipped.</param>
+        /// <param name="zippedFileName">Optional alternative filename</param>
         /// <returns>byte[] representing a zipped stream</returns>
         public static byte[] Zip(string textToZip, string zippedFileName = "zipped.txt")
         {
@@ -41,10 +42,37 @@ namespace ZipHelperLib
         }
 
         /// <summary>
+        /// Zips a byte array into a zipped byte array.
+        /// </summary>
+        /// <param name="byteArrayToZip">The byte array to be zipped.</param>
+        /// <param name="zippedFileName">Optional alternative filename</param>
+        /// <returns>byte[] representing a zipped stream</returns>
+        public static byte[] Zip(byte[] byteArrayToZip, string zippedFileName = "zipped.txt")
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var zipArchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    var demoFile = zipArchive.CreateEntry(zippedFileName);
+
+                    using (var entryStream = demoFile.Open())
+                    {
+                        using (var streamWriter = new StreamWriter(entryStream))
+                        {
+                            streamWriter.BaseStream.Write(byteArrayToZip, 0, byteArrayToZip.Length);
+                        }
+                    }
+                }
+
+                return memoryStream.ToArray();
+            }
+        }
+
+        /// <summary>
         /// Unzip a zipped byte array into a string.
         /// </summary>
         /// <param name="zippedBuffer">The byte array to be unzipped</param>
-        /// <returns>string representing the original stream</returns>
+        /// <returns>string representing the original stream (Default Encoding)</returns>
         public static string Unzip(byte[] zippedBuffer)
         {
             using (var zippedStream = new MemoryStream(zippedBuffer))
@@ -63,6 +91,38 @@ namespace ZipHelperLib
                                 var unzippedArray = ms.ToArray();
 
                                 return Encoding.Default.GetString(unzippedArray);
+                            }
+                        }
+                    }
+
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Unzip a zipped byte array into a string.
+        /// </summary>
+        /// <param name="zippedBuffer">The byte array to be unzipped</param>
+        /// <returns>string representing the original byte array stream</returns>
+        public static byte[] UnzipByteArray(byte[] zippedBuffer)
+        {
+            using (var zippedStream = new MemoryStream(zippedBuffer))
+            {
+                using (var archive = new ZipArchive(zippedStream))
+                {
+                    var entry = archive.Entries.FirstOrDefault(); // We expect at least one file
+
+                    if (entry != null)
+                    {
+                        using (var unzippedEntryStream = entry.Open())
+                        {
+                            using (var ms = new MemoryStream())
+                            {
+                                unzippedEntryStream.CopyTo(ms);
+                                var unzippedArray = ms.ToArray();
+
+                                return unzippedArray;
                             }
                         }
                     }

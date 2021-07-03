@@ -42,5 +42,33 @@ namespace ZipHelperUnitTest
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestZipUnzipByteArraySucceeds()
+        {
+            //// ARRANGE
+
+            var source = new byte[992];
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                source[i] = 42;
+            }
+
+            //// ACT
+
+            var zippedSource = ZipHelper.Zip(source);
+
+            var unzipped = ZipHelper.UnzipByteArray(zippedSource);
+
+            //// ASSERT
+
+            Assert.AreEqual(992, unzipped.Length);
+
+            for (int i = 0; i < 992; i++)
+            {
+                Assert.AreEqual(source[i], unzipped[i]);
+            }
+        }
     }
 }

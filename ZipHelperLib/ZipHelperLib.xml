@@ -18,6 +18,15 @@
             Zips a string into a zipped byte array.
             </summary>
             <param name="textToZip">The text to be zipped.</param>
+            <param name="zippedFileName">Optional alternative filename</param>
+            <returns>byte[] representing a zipped stream</returns>
+        </member>
+        <member name="M:ZipHelperLib.ZipHelper.Zip(System.Byte[],System.String)">
+            <summary>
+            Zips a byte array into a zipped byte array.
+            </summary>
+            <param name="byteArrayToZip">The byte array to be zipped.</param>
+            <param name="zippedFileName">Optional alternative filename</param>
             <returns>byte[] representing a zipped stream</returns>
         </member>
         <member name="M:ZipHelperLib.ZipHelper.Unzip(System.Byte[])">
@@ -25,7 +34,14 @@
             Unzip a zipped byte array into a string.
             </summary>
             <param name="zippedBuffer">The byte array to be unzipped</param>
-            <returns>string representing the original stream</returns>
+            <returns>string representing the original stream (Default Encoding)</returns>
+        </member>
+        <member name="M:ZipHelperLib.ZipHelper.UnzipByteArray(System.Byte[])">
+            <summary>
+            Unzip a zipped byte array into a string.
+            </summary>
+            <param name="zippedBuffer">The byte array to be unzipped</param>
+            <returns>string representing the original byte array stream</returns>
         </member>
     </members>
 </doc>
