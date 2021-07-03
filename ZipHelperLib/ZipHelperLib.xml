@@ -13,7 +13,7 @@
             Please check if System.IO.Compression and Linq are included.
             </remarks>
         </member>
-        <member name="M:ZipHelperLib.ZipHelper.Zip(System.String)">
+        <member name="M:ZipHelperLib.ZipHelper.Zip(System.String,System.String)">
             <summary>
             Zips a string into a zipped byte array.
             </summary>

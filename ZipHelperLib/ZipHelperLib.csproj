@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ZipHelperLib</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Sander van de Velde</Authors>
     <Description>This is a C# .Net Standard library which enables zipping and unzipping strings in memory.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
