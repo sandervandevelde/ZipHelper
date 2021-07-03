@@ -53,5 +53,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZipHelperLib\ZipHelperLib.csproj">
+      <Project>{f2bb23be-6d3b-449a-9e00-0095bd926035}</Project>
+      <Name>ZipHelperLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

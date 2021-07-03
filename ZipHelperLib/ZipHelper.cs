@@ -19,13 +19,13 @@ namespace ZipHelperLib
         /// </summary>
         /// <param name="textToZip">The text to be zipped.</param>
         /// <returns>byte[] representing a zipped stream</returns>
-        public static byte[] Zip(string textToZip)
+        public static byte[] Zip(string textToZip, string zippedFileName = "zipped.txt")
         {
             using (var memoryStream = new MemoryStream())
             {
                 using (var zipArchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
                 {
-                    var demoFile = zipArchive.CreateEntry("zipped.txt");
+                    var demoFile = zipArchive.CreateEntry(zippedFileName);
 
                     using (var entryStream = demoFile.Open())
                     {
@@ -51,7 +51,7 @@ namespace ZipHelperLib
             {
                 using (var archive = new ZipArchive(zippedStream))
                 {
-                    var entry = archive.Entries.FirstOrDefault();
+                    var entry = archive.Entries.FirstOrDefault(); // We expect at least one file
 
                     if (entry != null)
                     {
