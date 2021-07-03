@@ -19,18 +19,19 @@ namespace ZipHelperLib
         /// </summary>
         /// <param name="textToZip">The text to be zipped.</param>
         /// <param name="zippedFileName">Optional alternative filename</param>
-        /// <returns>byte[] representing a zipped stream</returns>
-        public static byte[] Zip(string textToZip, string zippedFileName = "zipped.txt")
+        /// <param name="compressionLevel">Compressionlevel (default optimal)</param>
+        /// <returns>byte[] representing a zipped stream (Encoding.Default)</returns>
+        public static byte[] Zip(string textToZip, string zippedFileName = "zipped.txt", CompressionLevel compressionLevel = CompressionLevel.Optimal)
         {
             using (var memoryStream = new MemoryStream())
             {
                 using (var zipArchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
                 {
-                    var demoFile = zipArchive.CreateEntry(zippedFileName);
+                    var demoFile = zipArchive.CreateEntry(zippedFileName, compressionLevel);
 
                     using (var entryStream = demoFile.Open())
                     {
-                        using (var streamWriter = new StreamWriter(entryStream))
+                        using (var streamWriter = new StreamWriter(entryStream, Encoding.Default))
                         {
                             streamWriter.Write(textToZip);
                         }
@@ -46,18 +47,19 @@ namespace ZipHelperLib
         /// </summary>
         /// <param name="byteArrayToZip">The byte array to be zipped.</param>
         /// <param name="zippedFileName">Optional alternative filename</param>
+        /// <param name="compressionLevel">Compressionlevel (default optimal)</param>
         /// <returns>byte[] representing a zipped stream</returns>
-        public static byte[] Zip(byte[] byteArrayToZip, string zippedFileName = "zipped.txt")
+        public static byte[] Zip(byte[] byteArrayToZip, string zippedFileName = "zipped.txt", CompressionLevel compressionLevel = CompressionLevel.Optimal)
         {
             using (var memoryStream = new MemoryStream())
             {
                 using (var zipArchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
                 {
-                    var demoFile = zipArchive.CreateEntry(zippedFileName);
+                    var demoFile = zipArchive.CreateEntry(zippedFileName, compressionLevel);
 
                     using (var entryStream = demoFile.Open())
                     {
-                        using (var streamWriter = new StreamWriter(entryStream))
+                        using (var streamWriter = new StreamWriter(entryStream)) // encoding is not relevant
                         {
                             streamWriter.BaseStream.Write(byteArrayToZip, 0, byteArrayToZip.Length);
                         }
@@ -72,7 +74,7 @@ namespace ZipHelperLib
         /// Unzip a zipped byte array into a string.
         /// </summary>
         /// <param name="zippedBuffer">The byte array to be unzipped</param>
-        /// <returns>string representing the original stream (Default Encoding)</returns>
+        /// <returns>string representing the original stream (Encoding.Default)</returns>
         public static string Unzip(byte[] zippedBuffer)
         {
             using (var zippedStream = new MemoryStream(zippedBuffer))

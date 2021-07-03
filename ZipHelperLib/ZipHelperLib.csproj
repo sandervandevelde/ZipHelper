@@ -3,14 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>ZipHelperLib</PackageId>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.4</PackageVersion>
     <Authors>Sander van de Velde</Authors>
     <Description>This is a C# .Net Standard library which enables zipping and unzipping strings in memory.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Byte array support added</PackageReleaseNotes>
+    <PackageReleaseNotes>Mit license</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Sander van de Velde. All rights reserved.</Copyright>
     <PackageTags>zip unzip compression uncompress inmemory memory byte array bytearray</PackageTags>    
     <Description>Zip and Unzip string or byte array in memory</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
