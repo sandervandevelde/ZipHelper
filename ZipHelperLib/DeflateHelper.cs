@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Text;
 
 namespace ZipHelperLib
 {
-    public partial class GZipHelper
+    public class DeflateHelper
     {
         public static byte[] Zip(byte[] byteArray)
         {
             using (var memoryStream = new MemoryStream())
             {
-                using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+                using (var deflateStream = new DeflateStream(memoryStream, CompressionMode.Compress, true))
                 {
-                    using (var streamWriter = new BufferedStream(gzipStream)) // encoding is not relevant
+                    using (var streamWriter = new BufferedStream(deflateStream)) // encoding is not relevant
                     {
                         streamWriter.Write(byteArray, 0, byteArray.Length);
                     }
@@ -30,9 +27,9 @@ namespace ZipHelperLib
             {
                 using (var unZippedMemoryStream = new MemoryStream())
                 {
-                    using (var gzipStream = new GZipStream(zippedMemoryStream, CompressionMode.Decompress))
+                    using (var deflateStream = new DeflateStream(zippedMemoryStream, CompressionMode.Decompress))
                     {
-                        using (var unZippedBufferedStream = new BufferedStream(gzipStream))
+                        using (var unZippedBufferedStream = new BufferedStream(deflateStream))
                         {
                             unZippedBufferedStream.CopyTo(unZippedMemoryStream);
                         }

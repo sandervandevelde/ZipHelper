@@ -1,15 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZipHelperLib;
 
 namespace ZipHelperUnitTest
 {
     [TestClass]
-    public class GZipHelperTest
+    public class DeflateHelperTest
     {
         [TestMethod]
         public void TestZipUnzipSucceeds()
@@ -25,9 +20,9 @@ namespace ZipHelperUnitTest
 
             //// ACT
 
-            var zippedSource = GZipHelper.Zip(source);
+            var deflatedSource = DeflateHelper.Zip(source);
 
-            var unzipped = GZipHelper.Unzip(zippedSource);
+            var unzipped = DeflateHelper.Unzip(deflatedSource);
 
             //// ASSERT
 
