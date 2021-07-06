@@ -27,6 +27,37 @@ namespace ZipHelperUnitTest
 
             var zippedSource = GZipHelper.Zip(source);
 
+            Assert.AreEqual(29, zippedSource.Length);
+
+            var unzipped = GZipHelper.Unzip(zippedSource);
+
+            //// ASSERT
+
+            Assert.AreEqual(992, unzipped.Length);
+
+            for (int i = 0; i < 992; i++)
+            {
+                Assert.AreEqual(source[i], unzipped[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestZipUnzipRandomSucceeds()
+        {
+            //// ARRANGE
+
+            var source = new byte[992];
+
+            var r = new Random(42);
+
+            r.NextBytes(source);
+
+            //// ACT
+
+            var zippedSource = GZipHelper.Zip(source);
+
+            Assert.AreEqual(1015, zippedSource.Length);
+
             var unzipped = GZipHelper.Unzip(zippedSource);
 
             //// ASSERT

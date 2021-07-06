@@ -78,6 +78,37 @@ namespace ZipHelperUnitTest
 
             var zippedSource = ZipHelper.Zip(source);
 
+            Assert.AreEqual(129, zippedSource.Length);
+
+            var unzipped = ZipHelper.UnzipByteArray(zippedSource);
+
+            //// ASSERT
+
+            Assert.AreEqual(992, unzipped.Length);
+
+            for (int i = 0; i < 992; i++)
+            {
+                Assert.AreEqual(source[i], unzipped[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestZipUnzipRandomByteArraySucceeds()
+        {
+            //// ARRANGE
+
+            var source = new byte[992];
+
+            var r = new Random(42);
+
+            r.NextBytes(source);
+
+            //// ACT
+
+            var zippedSource = ZipHelper.Zip(source);
+
+            Assert.AreEqual(1115, zippedSource.Length);
+
             var unzipped = ZipHelper.UnzipByteArray(zippedSource);
 
             //// ASSERT
